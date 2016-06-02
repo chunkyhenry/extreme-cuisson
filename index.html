@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+<html>
+<head>
+	<link rel="icon" href="icon.png">
+	<title>
+		Extreme Cuisson
+	</title>
+	<style type="text/css">
+	body {
+		margin:0px;
+	}
+	/* Style the Image Used to Trigger the Modal */
+	#myImg {
+		border-radius: 5px;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+
+	#myImg:hover {opacity: 0.7;}
+
+	/* The Modal (background) */
+	.modal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 100px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+	}
+
+	/* Modal Content (Image) */
+	.modal-content {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 700px;
+	}
+
+	/* Caption of Modal Image (Image Text) - Same Width as the Image */
+	#caption {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 700px;
+		text-align: center;
+		color: #ccc;
+		padding: 10px 0;
+		height: 150px;
+	}
+
+	/* Add Animation - Zoom in the Modal */
+	.modal-content, #caption { 
+		-webkit-animation-name: zoom;
+		-webkit-animation-duration: 0.6s;
+		animation-name: zoom;
+		animation-duration: 0.6s;
+	}
+
+	@-webkit-keyframes zoom {
+		from {-webkit-transform:scale(0)} 
+		to {-webkit-transform:scale(1)}
+	}
+
+	@keyframes zoom {
+		from {transform:scale(0)} 
+		to {transform:scale(1)}
+	}
+
+	/* The Close Button */
+	.close {
+		position: absolute;
+		top: 15px;
+		right: 35px;
+		color: #f1f1f1;
+		font-size: 40px;
+		font-weight: bold;
+		transition: 0.3s;
+	}
+
+	.close:hover,
+	.close:focus {
+		color: #bbb;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	/* 100% Image Width on Smaller Screens */
+	@media only screen and (max-width: 700px){
+		.modal-content {
+			width: 100%;
+		}
+	}
+	.box {
+		background-color:#E8CB7F;
+		border-style:solid;
+		border-color:#81623E;
+		border-width:3px;
+		font-family:Palatino Linotype;
+		color:#81623E;
+		padding:5px;
+		z-index:1;
+		position:absolute;
+		border-radius:5px;
+	}
+	#title {
+		width:auto;
+		height:auto;
+		text-align:center;
+		top:3%;
+		right:38%;
+		font-size:291%;
+	}
+	#transparent{
+		width:50%;
+		height:219.626%;
+		background:rgba(255,255,255,0.5);
+		border-right:10px solid #81623E;
+		border-left:10px solid #81623E;
+		position:absolute;
+		top:0%;
+		right:25%;
+
+	}
+	#media {
+		top:20%;
+		right:53.5%;
+		background-image:url("media.png");
+		background-size:100%;
+		width:10.3%;
+		height:5.14%;
+	}
+	#address {
+		top:20%;
+		right:38%;
+		width:10.4%;
+		height:14.64%;
+		text-align:center;
+		padding-top:0px;
+	}
+	#phone {
+		top:30%;
+		right:53.5%;
+		width:10.4%;
+		height:4.67%;
+		line-height:5px;
+		text-align:center;
+		padding-top:0px;
+	}
+	#menu {
+		top:40%;
+		right:38%;
+		width:26%;
+		height:105%;
+		text-align:center;
+		padding-top:0px;
+	}
+	#story {
+		top:147.5%;
+		right:49%;
+		width:15%;
+		height:51.87%;
+		padding-top:0px;
+	}
+	#hours {
+		top:147.5%;
+		right:38%;
+		text-align:center;
+		padding-top:0px;
+		padding-bottom:0px;
+	}
+	h1 {
+		font-family: 'Oleo Script', cursive;
+		text-align:center;
+	}
+	h2 {
+		font-family: 'Oleo Script', cursive;
+	}
+
+	.modalpara {
+		display:inline;
+	}
+	.cb-slideshow,
+	.cb-slideshow:after { 
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		left: 0px;
+		z-index: 0; 
+	}
+	.cb-slideshow:after { 
+		content: '';
+		background: transparent url(pattern.jpg) repeat top left; 
+	}
+	.cb-slideshow li span { 
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		color: transparent;
+		background-size: cover;
+		background-position: 50% 50%;
+		background-repeat: none;
+		opacity: 0;
+		z-index: 0;
+		animation: imageAnimation 36s linear infinite 0s; 
+	}
+
+	.cb-slideshow li div { 
+		z-index: 1000;
+		position: absolute;
+		bottom: 30px;
+		left: 0px;
+		width: 100%;
+		text-align: center;
+		opacity: 0;
+		color: #fff;
+		animation: titleAnimation 36s linear infinite 0s; 
+	}
+	.cb-slideshow li div h3 { 
+		font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+		font-size: 240px;
+		padding: 0;
+		line-height: 200px; 
+	}
+
+	.cb-slideshow li:nth-child(1) span { 
+		background-image: url(bread.jpg) 
+	}
+	.cb-slideshow li:nth-child(2) span { 
+		background-image: url(bread2.jpg);
+		animation-delay: 6s; 
+	}
+	.cb-slideshow li:nth-child(3) span { 
+		background-image: url(bread3.jpg);
+		animation-delay: 12s; 
+	}
+	.cb-slideshow li:nth-child(4) span { 
+		background-image: url(bread4.jpg);
+		animation-delay: 18s; 
+	}
+	.cb-slideshow li:nth-child(5) span { 
+		background-image: url(bread5.jpg);
+		animation-delay: 24s; 
+	}
+	.cb-slideshow li:nth-child(6) span { 
+		background-image: url(bread6.jpg);
+		animation-delay: 30s; 
+	}
+
+	.cb-slideshow li:nth-child(2) div { 
+		animation-delay: 6s; 
+	}
+	.cb-slideshow li:nth-child(3) div { 
+		animation-delay: 12s; 
+	}
+	.cb-slideshow li:nth-child(4) div { 
+		animation-delay: 18s; 
+	}
+	.cb-slideshow li:nth-child(5) div { 
+		animation-delay: 24s; 
+	}
+	.cb-slideshow li:nth-child(6) div { 
+		animation-delay: 30s; 
+	}
+
+	@keyframes imageAnimation { 
+		0% { opacity: 0; animation-timing-function: ease-in; }
+		8% { opacity: 1; animation-timing-function: ease-out; }
+		17% { opacity: 1 }
+		25% { opacity: 0 }
+		100% { opacity: 0 }
+	}
+
+	@keyframes titleAnimation { 
+		0% { opacity: 0 }
+		8% { opacity: 1 }
+		17% { opacity: 1 }
+		19% { opacity: 0 }
+		100% { opacity: 0 }
+	}
+
+	.no-cssanimations .cb-slideshow li span{
+		opacity: 1;
+	}
+
+	@media screen and (max-width: 1140px) { 
+		.cb-slideshow li div h3 { font-size: 140px }
+	}
+	@media screen and (max-width: 600px) { 
+		.cb-slideshow li div h3 { font-size: 80px }
+	}
+
+	ul {
+    	list-style-type: none;
+	}
+
+	span {
+		margin-top:-16px;
+	}
+	</style>
+
+</head>
+
+<body>
+	<ul class="cb-slideshow">
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+		<li>
+			<span>Image 01</span>
+			<div>
+				<h3>.</h3>
+			</div>
+		</li>
+	</ul>
+
+	<div id="title" class="box">
+		Extreme Cuisson
+	</div>
+
+	<div id="transparent">
+	</div>
+
+	<div id="media" class="box">
+	</div>
+
+	<div id="address" class="box">
+		<p>1201 E Union St</p>
+		<p>Seattle, WA 98112</p>
+	</div>
+
+	<div id="phone" class="box">
+		<p>206-421-8266</p>
+	</div>
+
+	<div id="menu" class="box">
+		<h1>Menu</h1>
+		<h2>Loaves</h2>
+		<p class="modalpara">Bread Loaf - $5</p>
+		<img id="myImg" src="breadloaf.png" alt="Fresh Baked Bread Loaf" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<p class="modalpara">Organic Bread Loaf - $25</p>
+		<img id="myImg" src="organicbreadloaf.png" alt="Fresh Baked Organic Bread Loaf" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<p class="modalpara">Amy's Meat Loaf - $5</p>
+		<img id="myImg" src="meatloaf.png" alt="Fresh Baked Meat Loaf" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<h2>Bagels</h2> 
+		<p class="modalpara">Plain Bagel - $3</p>
+		<img id="myImg" src="bagel.png" alt="Fresh Bagel" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<p class="modalpara">Blueberry Bagel - $4</p>
+		<img id="myImg" src="blueberrybagel.png" alt="Fresh Blueberry Bagel" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<p class="modalpara">Jewish Salmon Bagel - $4</p>
+		<img id="myImg" src="jewishsalmonbagel.png" alt="Fresh Baked Jewish Fish Bagel Thing" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<h2>Croissants</h2> 
+		<p class="modalpara">Buttery Croissant - $4</p>
+		<img id="myImg" src="butterycroissant.png" alt="Fresh Croissant" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<p class="modalpara">Chocolate Croissant - $5</p>
+		<img id="myImg" src="chocolatecroissant.png" alt="Chocolate Croissant" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<p class="modalpara">Fruit Croissant Platter - $50</p>
+		<img id="myImg" src="fruitcroissant.png" alt="Fresh Baked Fruit Croissant" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<h2>Pastries</h2>  
+		<p class="modalpara">Eclair - $2</p>
+		<img id="myImg" src="eclair.png" alt="Fresh Baked Eclair" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<p class="modalpara">Donut - $3</p>
+		<img id="myImg" src="donut.png" alt="Fresh Baked Donut" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+		<p class="modalpara">Danish - $3</p>
+		<img id="myImg" src="danish.png" alt="Fresh Baked Danish" width="30" height="20"><br>
+		<div id="myModal" class="modal">
+			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+			<img class="modal-content" id="img01">
+			<div id="caption"></div>
+		</div>  
+	</div>
+	
+	<div id="story" class="box">
+		<h1>Our Story</h1>
+		<p>We love bread so we make a lot of bread. Some of our bread is normal bread that is resonably priced. Some of it is organic or gluten free and costs a magnitude more because we can sell that garbage to rich liberals in Capitol Hill. We really like making bread and we hope you eat it! </p>
+	</div>
+	<div id="hours" class="box">
+		<h2>Hours</h2>
+		<p>Mon 5AM - 6PM</p>
+		<p>Tues 5AM - 6PM</p>
+		<p>Wed 5AM - 6PM</p>
+		<p>Thurs 5AM - 6PM</p>
+		<p>Fri 5AM - 6PM</p>
+		<p>Sat 5AM - 4PM</p>
+		<p>Sun - Closed</p>
+	</div>
+	<script>
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// Get the image and insert it inside the modal - use its "alt" text as a caption
+	var img = document.getElementById('myImg');
+	var modalImg = document.getElementById("img01");
+	var captionText = document.getElementById("caption");
+	img.onclick = function(){
+		modal.style.display = "block";
+		modalImg.src = this.src;
+		modalImg.alt = this.alt;
+		captionText.innerHTML = this.alt;
+	}
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() { 
+		modal.style.display = "none";
+	}
+	</script>
+</body>
+</html>
